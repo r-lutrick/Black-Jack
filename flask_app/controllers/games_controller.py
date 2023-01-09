@@ -6,6 +6,7 @@ from flask_app.models.game_model import Game
 # bcrypt = Bcrypt(app)
 
 
-@app.route('/')
+@app.route('/', methods=['POST','GET'])
 def game():
+    
     return render_template('blackjack.html')
