@@ -1,14 +1,7 @@
 class Card:
-
-    def __init__(self, suit, string_val, point_val):
-
+    def __init__(self, suit, rank):
         self.suit = suit
-        self.string_val = string_val
+        self.rank = rank
 
-        if point_val > 10 and string_val != "Ace":
-            self.point_val = 10
-        else:
-            self.point_val = point_val
-
-    def card_info(self):
-        print(f"{self.string_val}_of_{self.suit}")
+    def __repr__(self):
+        return f'{self.rank} of {self.suit}'

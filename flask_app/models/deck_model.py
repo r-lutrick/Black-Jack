@@ -1,32 +1,28 @@
-from . import card
+from card_model import Card
 import random
 
 
 class Deck:
     def __init__(self):
         suits = ["spades", "hearts", "clubs", "diamonds"]
+        ranks = ['ace', '2', '3', '4', '5', '6', '7',
+                 '8', '9', '10', 'jack', 'queen', 'king']
         self.cards = []
 
-        for s in suits:
-            for i in range(1, 14):
-                str_val = ""
-                if i == 1:
-                    str_val = "Ace"
-                elif i == 11:
-                    str_val = "Jack"
-                elif i == 12:
-                    str_val = "Queen"
-                elif i == 13:
-                    str_val = "King"
-                else:
-                    str_val = str(i)
-                self.cards.append(card.Card(s, i, str_val))
+        # Build deck using Card class
+        for suit in suits:
+            for rank in ranks:
+                self.cards.append(Card(suit, rank))
 
-    def show_cards(self):
-        for card in self.cards:
-            card.card_info()
+    def __repr__(self):
+        return f'Deck of {self.count()} cards'
+
+    def count(self):
+        return len(self.cards)
 
     def deal_card(self):
-        selected_card = random.choice(self.cards)
-        self.cards.remove(selected_card)
-        return selected_card
+        return self.cards.pop()
+
+    def shuffle(self):
+        random.shuffle(self.cards)
+        return self
